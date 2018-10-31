@@ -13,25 +13,22 @@ struct position
 
 struct particle
 {
-    particle(position* pos = new position())
-        : pos(pos)
-    {}
+    particle() : pos(new position()) {}
 
     position* pos;
 };
 
 int main()
 {
-    particle part3;
-    part3.pos->x = 1.;
+    particle part1;
+    part1.pos->x = 1.;
 
-    position pos1{1., 0., -1.};
-
-    particle part1{&pos1};
     particle part2{part1};
     part2.pos->x = 2.;
 
+    auto pos1 = *(part1.pos);
     auto pos2 = *(part2.pos);
+
     assert(pos2.x != pos1.x);
 
     return 0;
